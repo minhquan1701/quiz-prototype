@@ -10,7 +10,6 @@ const SignIn = () => {
     const signInWithEmailAndPasswordHandler = 
             (event,email, password) => {
                 event.preventDefault();
-                console.log(1);
                 auth.signInWithEmailAndPassword(email, password).catch(error => {
       setError("Error signing in with password and email!");
       console.error("Error signing in with password and email", error);

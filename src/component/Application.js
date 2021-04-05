@@ -8,10 +8,10 @@ import Quiz from "./Quiz";
 import { UserContext } from "../providers/UserProvider";
 
 function Application() {
-  const user = useContext(UserContext);
+  const state = useContext(UserContext);
   return (
-        user ?
-        <Quiz />
+        state.user ?
+        <Quiz data={state.querySnapshot}/>
       :
         <Router>
           <SignUp path="signUp" />
