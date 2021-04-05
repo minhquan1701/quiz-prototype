@@ -86,7 +86,7 @@ export default function App({data}) {
   
   // Validate ans with predefined templates.
   const checkAnswer = (ans) => {
-    const found = questions[currentQuestion].answerOptions.find(answer => answer.answerText === ans);
+    const found = data[currentQuestion].answerOptions.find(answer => answer.answerText === ans);
     console.log(found.isCorrect);
 
     return found.isCorrect;
@@ -105,28 +105,29 @@ export default function App({data}) {
 
 
 	return (
-	<>
+		data.length && <>
+	
 	<div className="mb-4">
 		<span className="w-16 h-16 p-2 mr-2 rounded-md bg-red-400 font-bold">{minutes}</span>
 		<span className="font-bold">:</span>
 		<span className="w-16 h-16 p-2 ml-2 rounded-md bg-red-400 font-bold">{seconds}</span>
 	</div>
 
-	{data.length && <div className='app'>
+	 <div className='app'>
 			
-			{currentQuestion  >= questions.length ? (
-				<div className='score-section'>You scored {score} out of {questions.length}</div>
+			{currentQuestion  >= data.length ? (
+				<div className='score-section'>You scored {score} out of {data.length}</div>
 			) : (
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/{questions.length}
+							<span>Question {currentQuestion + 1}</span>/{data.length}
 						</div>
 						<div className='question-text'>{data[currentQuestion].questionText}</div>
 					</div>
 					<div className='answer-section'>
 						{
-              questions[currentQuestion].answerOptions.map(answer => (
+              data[currentQuestion].answerOptions.map(answer => (
                 <button key={answer.answerText} onClick={e => selectAnswer(e)} >{answer.answerText}</button>
               )
                   )
@@ -137,7 +138,7 @@ export default function App({data}) {
 
 			
 
-		</div>}
+		</div>
 	
 		
 	{/* Handle submit here. Click Submit -> Save ans+questions along with user to firestore */}
@@ -151,6 +152,7 @@ export default function App({data}) {
 		});}}>Sign Out</button>
 	
 		</>
+	
 		
 
 		
