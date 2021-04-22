@@ -84,6 +84,7 @@ button {
   align-items: center;
   border: 5px solid #234668;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 
 .correct {
@@ -95,7 +96,7 @@ button {
 }
 
 button:hover {
-  background-color: #555e7d;
+  background-color: #ff3333;
 }
 
 button:focus {
@@ -106,5 +107,8 @@ button svg {
   margin-right: 5px;
 }
 .sign-out-btn {
+  background-color: #ff3333;
+}
+.answer-selected {
   background-color: #ff3333;
 }

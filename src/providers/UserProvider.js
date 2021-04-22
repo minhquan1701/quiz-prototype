@@ -1,4 +1,4 @@
-import React, { Component, createContext } from "react";
+import React, { Component, createContext, useState } from "react";
 import { auth, firestore } from "../firebase";
 
 
@@ -7,37 +7,37 @@ export const UserContext = createContext({ user: null });
 class UserProvider extends Component {
   state = {
     user: null,
-    querySnapshot: []
+    loginAttempt: 0,
+    quizCode: ""
   };
-  queryData = [];
+ 
   
-  
-  componentDidMount = async () => {
+  componentDidMount = () => {
     auth.onAuthStateChanged(user => {
+      
       if (user){
-        this.setState({ user });
-        firestore.collection("test-01").get().then((querySnapshot) => {
-			if (querySnapshot) {
-        querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        this.queryData.push(doc.data());
-       
-       this.setState({querySnapshot: [...this.queryData]})
-       
-    });
-				this.queryData = [];
-			} else {
-				// doc.data() will be undefined in this case
-				console.log("No such document!");
-			}
-		}).catch((error) => {
-			console.log("Error getting document:", error);
-		});
-
+      
+       this.setState({user: user.email});
+     
+        // this.setState({quizCode: sessionStorage.getItem('quizCode')});
         
-      }else{
-        this.setState({user: null, querySnapshot: []});
-        this.queryData = [];
+        firestore.collection("users").doc(user.email).get().then((doc) => {
+          //  this.setState({quizCode: doc.data().quizCode})
+           
+          
+          this.setState({loginAttempt: doc.data().loginAttempt});
+            
+            //Fetch questions based on quiz code.
+           
+
+        }).catch(() => console.error("can't get user"));
+        
+        
+      } 
+      else{
+        this.setState({user: null, querySnapshot: []})
+        
+        
       }
       
       
@@ -48,9 +48,11 @@ class UserProvider extends Component {
 
   render() {
     //const { user } = this.state;
-
+   
     return (
+      
       <UserContext.Provider value={this.state}>
+        
         {this.props.children}
       </UserContext.Provider>
     );
@@ -58,3 +60,20 @@ class UserProvider extends Component {
 }
 
 export default UserProvider;
+
+
+
+// function UserProvider({children}) {
+//   const [loginQuizCode, setQuizCode] = useState('');
+//   const [state, setState] = useState({
+//     user: null,
+//     loginAttempt: 0
+//   })
+//   return (
+//     <UserContext.Provider value={state} >
+//       {React.cloneElement(children, setQuizCode)}
+//     </UserContext.Provider>
+//   )
+// }
+
+// export default UserProvider

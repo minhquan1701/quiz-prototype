@@ -17,6 +17,110 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+// let data = [
+//     {
+//         questionText: "How many soccer players should each team have on the field at the start of each match??",
+//         answerOptions: [
+//             {
+//                 answerText: '10',
+//                 isCorrect: false
+//             },
+//             {
+//                 answerText: '11',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: '12',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: '16',
+//                 isCorrect: false
+//             }
+            
+//         ]
+        
+        
+//     },
+//     {
+//         questionText: "When Michael Jordan played for the Chicago Bulls, how many NBA Championships did he win?",
+//         answerOptions: [
+//             {
+//                 answerText: '10',
+//                 isCorrect: false
+//             },
+//             {
+//                 answerText: '11',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: '6',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: '16',
+//                 isCorrect: false
+//             }
+            
+//         ]
+        
+        
+//     },
+//     {
+//         questionText: "Which Williams sister has won more Grand Slam titles?",
+//         answerOptions: [
+//             {
+//                 answerText: 'Serena',
+//                 isCorrect: false
+//             },
+//             {
+//                 answerText: 'Quan',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: 'Minh',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: 'Hoang',
+//                 isCorrect: false
+//             }
+            
+//         ]
+        
+        
+//     },
+//     {
+//         questionText: "What country won the very first FIFA World Cup in 1930?",
+//         answerOptions: [
+//             {
+//                 answerText: 'Uruguay',
+//                 isCorrect: true
+//             },
+//             {
+//                 answerText: 'America',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: 'France',
+//                 isCorrect: false
+//             },
+//             {   
+//                 answerText: 'Vietnam',
+//                 isCorrect: false
+//             }
+            
+//         ]
+        
+        
+//     }
+// ]
+// data.forEach((item, index) => {
+//     firestore.collection('test-02').doc(`question-${index+1}`).set(item)
+//     .then(() =>console.log("done"));
+    
+// });
+
 
 // const provider = new firebase.auth.GoogleAuthProvider();
 // export const signInWithGoogle = () => {
